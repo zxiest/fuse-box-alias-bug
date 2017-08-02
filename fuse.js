@@ -15,6 +15,7 @@ const {
   UglifyJSPlugin,
   ImageBase64Plugin,
   CSSResourcePlugin,
+  CopyPlugin,
   QuantumPlugin,
   // } = require('../fuse-box')
 } = require('fuse-box')
@@ -99,6 +100,7 @@ const cssResourcePluginConfig = {
   },
   dist,
 }
+
 const babelPresetEnv = [
   'env',
   {
@@ -121,6 +123,7 @@ let fuse = new FuseBox({
   // cache: true,
   log: debug,
   debug,
+  target: 'browser',
   homeDir: './',
   alias: {
     fonts: '~/build/fonts',
@@ -159,6 +162,7 @@ let fuse = new FuseBox({
     WebIndexPlugin({
       template: 'index.html',
     }),
+    CopyPlugin({ files: ["*.png"] }),
     [
       SassPlugin({
         indentedSyntax: false,
@@ -202,7 +206,7 @@ let fuse = new FuseBox({
 
 if (!production) fuse.dev()
 
-const bundler = fuse.bundle('bundle').instructions(
+const bundler = fuse.bundle('bundle').target('browser').instructions(
   `> src/index.jsx
     +[node-modules/react-toolbox/**/*.sass]
     +[src/stylesheets/**/*.sass]

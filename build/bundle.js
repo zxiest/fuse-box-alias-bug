@@ -48982,7 +48982,7 @@ exports.default = createHashHistory;
 return ___scope___.entry = "index.js";
 });
 FuseBox.pkg("warning", {}, function(___scope___){
-___scope___.file("warning.js", function(exports, require, module, __filename, __dirname){
+___scope___.file("browser.js", function(exports, require, module, __filename, __dirname){
 /* fuse:injection: */ var process = require("process");
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -49002,11 +49002,9 @@ ___scope___.file("warning.js", function(exports, require, module, __filename, __
  * same logic and follow the same code paths.
  */
 
-var __DEV__ = process.env.NODE_ENV !== 'production';
-
 var warning = function() {};
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   warning = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
@@ -49048,10 +49046,10 @@ if (__DEV__) {
 module.exports = warning;
 
 });
-return ___scope___.entry = "warning.js";
+return ___scope___.entry = "browser.js";
 });
 FuseBox.pkg("invariant", {}, function(___scope___){
-___scope___.file("invariant.js", function(exports, require, module, __filename, __dirname){
+___scope___.file("browser.js", function(exports, require, module, __filename, __dirname){
 /* fuse:injection: */ var process = require("process");
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -49075,10 +49073,8 @@ ___scope___.file("invariant.js", function(exports, require, module, __filename, 
  * will remain to ensure logic does not differ in production.
  */
 
-var NODE_ENV = process.env.NODE_ENV;
-
 var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
     }
@@ -49108,7 +49104,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 });
-return ___scope___.entry = "invariant.js";
+return ___scope___.entry = "browser.js";
 });
 FuseBox.pkg("resolve-pathname", {}, function(___scope___){
 ___scope___.file("index.js", function(exports, require, module, __filename, __dirname){
